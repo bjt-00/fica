@@ -1,35 +1,55 @@
 package com.fica.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
 
+import org.springframework.stereotype.Service;
+import com.fica.dataaccess.dao.FictionalCharactersDAO;
+import com.fica.dataaccess.orm.FictionalCharacterORM;
+
+@Transactional
 @Service
 public class FictionalCharactersService implements FictionalCharacters {
 
+	@Resource
+	FictionalCharactersDAO dao;
+	
 	@Override
-	public String getFictionalCharacters() {
-		return "str1,str2,Str3,...";
+	public List<FictionalCharacterORM> getList() {
+		return dao.getList();
 	}
 
 	@Override
-	public String getFictionalCharacterById(String id) {
-		return "getUniverseById "+id;
+	public FictionalCharacterORM getFictionalCharacterById(Long universeId) {
+		return dao.getFictionalCharacterById(universeId);
 	}
 
 	@Override
-	public boolean addFictionalCharacter() {
-		// TODO Auto-generated method stub
+	public FictionalCharacterORM save(FictionalCharacterORM fictionalCharacterORM) {
+		//we can mature business logic here to make sure object save successfully.
+		 return dao.save(fictionalCharacterORM);
+	}
+
+	@Override
+	public boolean update(FictionalCharacterORM fictionalCharacterORM) {
+		try {
+			dao.update(fictionalCharacterORM.getFictionalCharacterId(),fictionalCharacterORM.getFullName());
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();//we can use logger here, due to time constraints ignoring that part
+		}
 		return false;
 	}
 
 	@Override
-	public boolean updateFictionalCharacter() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deleteFictionalCharacter() {
-		// TODO Auto-generated method stub
+	public boolean delete(Long fictionalCharacterId) {
+		try {
+			dao.deleteById(fictionalCharacterId);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();//we can use logger here, due to time constraints ignoring that part
+		}
 		return false;
 	}
 

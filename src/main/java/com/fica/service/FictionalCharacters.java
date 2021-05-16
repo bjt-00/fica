@@ -1,15 +1,19 @@
 package com.fica.service;
 
+import java.util.List;
+
+import com.fica.dataaccess.orm.FictionalCharacterORM;
+
 public interface FictionalCharacters {
 
-	String getFictionalCharacters();
+	List<FictionalCharacterORM> getList();
 
-	String getFictionalCharacterById(String id);
+	FictionalCharacterORM getFictionalCharacterById(Long universeId);
 
-	boolean addFictionalCharacter();
+	FictionalCharacterORM save(FictionalCharacterORM fictionalCharacterORM);
 
-	boolean updateFictionalCharacter();
+	boolean update(FictionalCharacterORM fictionalCharacterORM);
 
-	boolean deleteFictionalCharacter();
+	boolean delete(Long fictionalCharacterId);
 
 }
