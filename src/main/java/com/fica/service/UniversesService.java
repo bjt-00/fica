@@ -1,35 +1,55 @@
 package com.fica.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
 
+import org.springframework.stereotype.Service;
+import com.fica.dataaccess.dao.UniversesDAO;
+import com.fica.dataaccess.orm.UniverseORM;
+
+@Transactional
 @Service
 public class UniversesService implements Universes {
 
+	@Resource
+	UniversesDAO dao;
+	
 	@Override
-	public String getUniverses() {
-		return "str1,str2,str3,...";
+	public List<UniverseORM> getList() {
+		return dao.getList();
 	}
 
 	@Override
-	public String getUniverseById(String id) {
-		return "getUniverseById "+id;
+	public UniverseORM getUniverseById(Long universeId) {
+		return dao.getUniverseById(universeId);
 	}
 
 	@Override
-	public boolean addUniverse() {
-		// TODO Auto-generated method stub
+	public UniverseORM save(UniverseORM universeORM) {
+		//we can mature business logic here to make sure object save successfully.
+		 return dao.save(universeORM);
+	}
+
+	@Override
+	public boolean update(UniverseORM universeORM) {
+		try {
+			dao.update(universeORM.getUniverseId(),universeORM.getUniverseName());
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();//we can use logger here, due to time constraints ignoring that part
+		}
 		return false;
 	}
 
 	@Override
-	public boolean updateUniverse() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deleteUniverse() {
-		// TODO Auto-generated method stub
+	public boolean delete(Long universeId) {
+		try {
+			dao.deleteById(universeId);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();//we can use logger here, due to time constraints ignoring that part
+		}
 		return false;
 	}
 

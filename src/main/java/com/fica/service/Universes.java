@@ -1,15 +1,19 @@
 package com.fica.service;
 
+import java.util.List;
+
+import com.fica.dataaccess.orm.UniverseORM;
+
 public interface Universes {
 
-	String getUniverses();
+	List<UniverseORM> getList();
 
-	String getUniverseById(String id);
+	UniverseORM getUniverseById(Long universeId);
 
-	boolean addUniverse();
+	boolean update(UniverseORM universeORM);
 
-	boolean updateUniverse();
+	UniverseORM save(UniverseORM universeORM);
 
-	boolean deleteUniverse();
+	boolean delete(Long universeId);
 
 }
