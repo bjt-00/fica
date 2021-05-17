@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+   fantacy-info-center:
+    image: bitguiders/fantacy-info-center
+    build:
+     context: ./
+     dockerfile: Dockerfile
+    volumes:
+      - /data/bitguiders/fantacy-info-center
+    ports:
+      - "8080:8080"
