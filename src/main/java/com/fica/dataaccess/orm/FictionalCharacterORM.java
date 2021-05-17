@@ -13,6 +13,7 @@ public class FictionalCharacterORM {
 
 	private Long fictionalCharacterId;
 	private String fullName;
+	private Long universeId;
 	
 	@JsonCreator
 	public FictionalCharacterORM() {
@@ -32,4 +33,11 @@ public class FictionalCharacterORM {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
+	public Long getUniverseId() {
+		return universeId;
+	}
+	public void setUniverseId(Long universeId) {
+		this.universeId = universeId;
+	}
+
 }
