@@ -11,7 +11,7 @@
 	<groupId>com.fica</groupId>
 	<artifactId>fantacy-info-center</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>fantacy-info-center</name>
 	<description>Fantacy Info Center Application</description>
 	<properties>
@@ -56,6 +56,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>fantacy-info-center</finalName>
 	</build>
 
 </project>
